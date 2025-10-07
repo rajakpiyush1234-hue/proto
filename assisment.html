@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Assessments - VidyaVatika</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">VidyaVatika</h1>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="live.html">Live Lessons</a>
+        <a href="assessment.html" class="highlight">Assessments</a>
+        <a href="register.html">Register</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="assessment-section">
+    <div class="container">
+      <h2>Subject-wise Assessments</h2>
+      <p>Choose a subject to start your assessment</p>
+
+      <div class="tabs">
+        <button class="tab-button active" data-tab="math">Math</button>
+        <button class="tab-button" data-tab="science">Science</button>
+        <button class="tab-button" data-tab="english">English</button>
+        <button class="tab-button" data-tab="history">History</button>
+      </div>
+
+      <div class="tab-content" id="math">
+        <h3>Math Assessment</h3>
+        <ul>
+          <li>Algebra Quiz – 10 Questions</li>
+          <li>Geometry Challenge – 15 Questions</li>
+          <li>Time & Speed Test – 20 Questions</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="science">
+        <h3>Science Assessment</h3>
+        <ul>
+          <li>Physics MCQs – 15 Questions</li>
+          <li>Biology Worksheet – 12 Questions</li>
+          <li>Chemistry Basics – 20 Questions</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="english">
+        <h3>English Assessment</h3>
+        <ul>
+          <li>Grammar Quiz – 10 Questions</li>
+          <li>Reading Comprehension – 2 Passages</li>
+          <li>Synonyms & Antonyms – 20 Questions</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="history">
+        <h3>History Assessment</h3>
+        <ul>
+          <li>Ancient History Quiz – 15 Questions</li>
+          <li>Medieval Events Timeline</li>
+          <li>Modern History Short Answer Test</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p></p>
+    </div>
+  </footer>
+
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        tabContents.forEach(content => content.style.display = 'none');
+        document.getElementById(button.getAttribute('data-tab')).style.display = 'block';
+      });
+    });
+
+    window.onload = () => {
+      document.querySelector('.tab-button.active').click();
+    };
+  </script>
+</body>
+</html>

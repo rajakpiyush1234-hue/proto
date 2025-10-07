@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login - VidyaVatika</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">VidyaVatika</h1>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="register.html">Register</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="login-section">
+    <div class="login-container">
+      <h2>Welcome Back</h2>
+      <p class="login-subtitle">Login to your account to continue learning</p>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn-primary">Login</button>
+        </div>
+      </form>
+
+      <p class="login-link">
+        Don’t have an account?
+        <a href="register.html">Register here</a>
+      </p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p></p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
+      alert('Welcome back! You are logged in as ${email}');
+      window.location.href = 'index.html'; // Redirect to homepage after login
+    });
+  </script>
+</body>
+</html>

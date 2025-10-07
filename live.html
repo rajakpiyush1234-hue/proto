@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Live Lessons - VidyaVatika</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">VidyaVatika</h1>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="live.html" class="highlight">Live Lessons</a>
+        <a href="register.html">Register</a>
+        <a href="#">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="live-section">
+    <div class="container">
+      <h2>Live Lessons</h2>
+      <p>Select a subject to view available lessons</p>
+
+      <div class="tabs">
+        <button class="tab-button active" data-tab="math">Math</button>
+        <button class="tab-button" data-tab="science">Science</button>
+        <button class="tab-button" data-tab="english">English</button>
+        <button class="tab-button" data-tab="history">History</button>
+      </div>
+
+      <div class="tab-content" id="math">
+        <h3>Math Lessons</h3>
+        <ul>
+          <li><a href="https://www.youtube.com/watch?v=1XlT3Y2oyAU&list=PLU6SqdYcYsfI7Ebw_j-Vy8YKHdbHKP9am" target="_blank">Algebra Basics</li></a>
+          <li><a href="https://www.youtube.com/watch?v=61v3B4_Pl-s&list=PLoMiZRRlvbStZ0GjUaV3-IsSIYgP14RWS" target="_blank" >Geometry Fundamentals</li></a>
+          <li><a href="https://www.youtube.com/watch?v=kcSMOgFRp6w&pp=ygUUdHJpZ25vbWV0cnkgY2xhc3MgMTE%3D" target="_blank">Trignometry</li></a> 
+        </ul>
+      </div>
+
+      <div class="tab-content" id="science">
+        <h3>Science Lessons</h3>
+        <ul>
+          <li>Physics: Motion</li>
+          <li>Chemistry: Periodic Table</li>
+          <li>Biology: Human Anatomy</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="english">
+        <h3>English Lessons</h3>
+        <ul>
+          <li>Grammar Basics</li>
+          <li>Vocabulary Building</li>
+          <li>Essay Writing</li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="history">
+        <h3>History Lessons</h3>
+        <ul>
+          <li>Ancient Civilizations</li>
+          <li>Medieval History</li>
+          <li>Modern History</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p></p>
+    </div>
+  </footer>
+
+  <script>
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active from all buttons
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Hide all content
+        tabContents.forEach(content => content.style.display = 'none');
+
+        // Show selected tab content
+        const tab = button.getAttribute('data-tab');
+        document.getElementById(tab).style.display = 'block';
+      });
+    });
+
+    // Show first tab by default
+    window.onload = () => {
+      document.querySelector('.tab-button.active').click();
+    }
+  </script>
+</body>
+</html>
