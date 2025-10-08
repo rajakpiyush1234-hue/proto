@@ -1,0 +1,44 @@
+          <div className="navigation-buttons">
+            <button
+              className="nav-button"
+              onClick={handlePrevQuestion}
+              disabled={currentQuestion === 0 || isSubmitting}
+            >
+              Previous
+            </button>
+            
+            <div className="button-group">
+              {currentQuestion === questions.length - 1 ? (
+                <button
+                  className="nav-button submit"
+                  onClick={handleSubmitAssessment}
+                  disabled={isSubmitting || answers.every(ans => ans === null)}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Submit Assessment'}
+                </button>
+              ) : (
+                <button
+                  className="nav-button"
+                  onClick={handleNextQuestion}
+                  disabled={currentQuestion === questions.length - 1 || isSubmitting}
+                >
+                  Next
+                </button>
+              )}
+
+              {/* Early submission button */}
+              {currentQuestion !== questions.length - 1 && answers.some(ans => ans !== null) && (
+                <button
+                  className="nav-button submit-early"
+                  onClick={() => {
+                    if (window.confirm('Are you sure you want to submit the assessment early?')) {
+                      handleSubmitAssessment();
+                    }
+                  }}
+                  disabled={isSubmitting}
+                >
+                  Submit Early
+                </button>
+              )}
+            </div>
+          </div>

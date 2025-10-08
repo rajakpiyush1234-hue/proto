@@ -6,7 +6,9 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Home from './components/Home';
 import Assessment from './components/Assessment';
+import Quiz from './components/Quiz';
 import TestConnection from './components/TestConnection';
+import './styles/quiz.css';
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="/assessment" element={<Assessment />} />
+          <Route path="/quiz/:subject" element={<Quiz />} />
+          <Route path="/quiz/results/:quizId" element={<ResultCard />} />
           <Route path="/test" element={<TestConnection />} />
         </Routes>
       </main>

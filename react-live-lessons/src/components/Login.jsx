@@ -24,18 +24,27 @@ function Login() {
     setLoading(true);
 
     try {
+      console.log('Attempting login with:', { email: formData.email });
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formData),
         credentials: 'include'
       });
 
-      const data = await response.json();
+      let data;
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        data = await response.json();
+      } else {
+        throw new Error('Server response was not JSON');
+      }
 
       if (!response.ok) {
+        console.error('Login failed:', data);
         throw new Error(data.message || 'Login failed');
       }
 
@@ -49,7 +58,11 @@ function Login() {
       
     } catch (err) {
       console.error('Login error:', err);
-      setError(err.message || 'Invalid email or password');
+      if (err.name === 'TypeError' && err.message === 'Failed to fetch') {
+        setError('Unable to connect to the server. Please check your internet connection and try again.');
+      } else {
+        setError(err.message || 'Invalid email or password');
+      }
     } finally {
       setLoading(false);
     }

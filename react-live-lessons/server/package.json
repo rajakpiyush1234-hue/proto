@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "prestart": "node scripts/clear-port.js",
     "start": "node index.js",
     "dev": "nodemon --inspect index.js",
-    "test": "node test-server.js"
+    "test": "node test-server.js",
+    "clear-port": "node scripts/clear-port.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

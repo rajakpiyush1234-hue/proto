@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function Assessment() {
   const [selectedSubject, setSelectedSubject] = useState(null);
@@ -12,7 +12,7 @@ function Assessment() {
       description: 'Test your mathematical skills from basic arithmetic to advanced calculus',
       difficulty: 'Medium',
       duration: '45 mins',
-      questions: 25,
+      questionCount: 3,
       topics: ['Algebra', 'Geometry', 'Trigonometry', 'Calculus']
     },
     {
@@ -22,7 +22,7 @@ function Assessment() {
       description: 'Evaluate your understanding of physics, chemistry, and biology concepts',
       difficulty: 'Hard',
       duration: '60 mins',
-      questions: 30,
+      questionCount: 3,
       topics: ['Physics', 'Chemistry', 'Biology', 'Environmental Science']
     },
     {
@@ -32,7 +32,7 @@ function Assessment() {
       description: 'Assess your language proficiency in grammar, vocabulary, and comprehension',
       difficulty: 'Easy',
       duration: '40 mins',
-      questions: 20,
+      questionCount: 3,
       topics: ['Grammar', 'Vocabulary', 'Reading Comprehension', 'Writing']
     },
     {
@@ -42,14 +42,15 @@ function Assessment() {
       description: 'Test your coding skills and problem-solving abilities',
       difficulty: 'Medium',
       duration: '90 mins',
-      questions: 15,
+      questionCount: 3,
       topics: ['Python', 'JavaScript', 'Data Structures', 'Algorithms']
     }
   ];
 
+  const navigate = useNavigate();
+  
   const handleStartAssessment = (subject) => {
-    // Here you would typically navigate to the actual assessment
-    alert(`Starting ${subject.name} assessment. This will be a ${subject.duration} test with ${subject.questions} questions.`);
+    navigate(`/assessment/${subject.id}`);
   };
 
   return (
@@ -110,7 +111,12 @@ function Assessment() {
                     className="start-assessment-btn"
                     onClick={(e) => {
                       e.stopPropagation();
-                      handleStartAssessment(subject);
+                      if (localStorage.getItem('token')) {
+                        handleStartAssessment(subject);
+                      } else {
+                        alert('Please login to take the assessment');
+                        navigate('/login');
+                      }
                     }}
                   >
                     Start Assessment
